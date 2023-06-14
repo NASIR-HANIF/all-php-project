@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.js"
+        integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <title>File send database</title>
+</head>
+
+<body>
+    <form class="photo-form">
+        <label for="choose file">Choos File</label>
+        <input type="file" name="photo">
+        <input type="submit" id="submit" value="submit">
+    </form>
+    <script>
+        $(document).ready(function () {
+            $(".photo-form").on("submit", function (e) {
+                e.preventDefault();
+                $.ajax({
+                   type : "POST",
+                   url : "fileSave.php", 
+                   data : new FormData(this),
+                   processData : false,
+                   contentType : false,
+                   cache : false,
+                   success : function(response){
+                    document.write(response);
+                   }
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>
